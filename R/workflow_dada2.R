@@ -188,6 +188,8 @@ denoise <- function(object, ...) {
     } else {
         taxa_db <- config$taxa_db
     }
+    feature_table2<-feature_table
+    feature_table <- feature_table[,nchar(colnames(feature_table)) %in% 250:256]
     taxa <- assignTaxonomy(feature_table, taxa_db,
                            minBoot = config$bootstrap_confidence * 100,
                            multithread = config$threads)
