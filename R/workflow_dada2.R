@@ -150,6 +150,8 @@ denoise <- function(object, ...) {
             feature_table[[r]],
             multithread = config$threads
         )
+        feature_table2<-feature_table_nochim
+        feature_table_nochim <- feature_table_nochim[,nchar(colnames(feature_table_nochim)) %in% 250:256]
         flog.info(
             paste0("Removed %d/%d sequence variants as chimeric ",
                    "from run %s (%.2f%% of reads)"),
@@ -188,8 +190,6 @@ denoise <- function(object, ...) {
     } else {
         taxa_db <- config$taxa_db
     }
-    feature_table2<-feature_table
-    feature_table <- feature_table[,nchar(colnames(feature_table)) %in% 250:256]
     taxa <- assignTaxonomy(feature_table, taxa_db,
                            minBoot = config$bootstrap_confidence * 100,
                            multithread = config$threads)
