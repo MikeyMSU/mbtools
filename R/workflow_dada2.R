@@ -151,7 +151,7 @@ denoise <- function(object, ...) {
             multithread = config$threads
         )
         feature_table2<-feature_table_nochim
-        feature_table_nochim <- feature_table_nochim[,nchar(colnames(feature_table_nochim)) %in% 250:256]
+        feature_table_nochim <- feature_table_nochim[,nchar(colnames(feature_table_nochim)) %in% 51:500]
         flog.info(
             paste0("Removed %d/%d sequence variants as chimeric ",
                    "from run %s (%.2f%% of reads)"),
